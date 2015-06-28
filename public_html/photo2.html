@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    
+    
+    <head>
+        <link rel="stylesheet" href="/ResponsiveRabbits/build/css/imglykit-night-ui.css" />
+        <script src="/ResponsiveRabbits/build/js/imglykit.js"></script>
+        <title>TODO supply a title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="container" style="width: 640px; height: 480px;"></div>
+        
+        <button id="render">Render an image</button>
+
+        <script>
+
+  
+            window.onload = function() {
+                
+                
+                 var image;
+
+              image = new Image();
+              image.src = "/ResponsiveRabbits/img/rabbit1.jpg";
+
+                image.onload = function () {
+                container = document.querySelector("div#container");
+                kit = new ImglyKit({
+                  image: image,
+                  container: container,
+                  assetsUrl: "/ResponsiveRabbits/assets", // Change this to where your assets are
+                  ui: {
+                    enabled: true // UI is disabled per default
+                  }
+                });
+                kit.run();
+              };
+            // all the previous code...
+
+            var button = document.querySelector("button#render");
+            button.addEventListener("click", function () {
+              kit.render("image", "image/png")
+                .then(function (image) {
+                  document.body.appendChild(image);
+                });
+            });
+          };
+        </script>
+    </body>
+</html>
